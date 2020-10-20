@@ -25,6 +25,7 @@ const getStorageGetSet = type => (
 		setItem: (key, value, options) => setCookie(key, value, options),
 		
 	} : {}
+	
 )
 
 function useStorage(type, key, initialValue = '') {
@@ -33,10 +34,10 @@ function useStorage(type, key, initialValue = '') {
 
 	const [item, setItem] = useState(() => (
 		storage.getItem(key) ? storage.getItem(key) 
-		: () => {
+		: (() => {
 			storage.setItem(key, initialValue)
 			return initialValue
-		}
+		})()
 	))
   
 	return [
