@@ -1,22 +1,29 @@
 import { useState } from 'react'
 import { set as setCookie, get as getCookie } from 'bjork_cookie'
 
-export const TYPES = {
+export const ACTIONS = {
 	LOCAL: 'local',
 	SESSION: 'session',
 	COOKIE: 'cookie'
 }
 
 const getStorageGetSet = type => (
-	type === TYPES.LOCAL ? {
+
+	type === ACTIONS.LOCAL ? {
+
 		getItem: key => localStorage.getItem(key),
 		setItem: (key, value) => localStorage.setItem(key, value),
-	} : type === TYPES.SESSION ? {
+
+	} : type === ACTIONS.SESSION ? {
+
 		getItem: key => sessionStorage.getItem(key),
 		setItem: (key, value) => sessionStorage.setItem(key, value),
-	} :  type === TYPES.COOKIE ? {
+
+	} :  type === ACTIONS.COOKIE ? {
+
 		getItem: key => getCookie(key),
 		setItem: (key, value, options) => setCookie(key, value, options),
+		
 	} : {}
 )
 
@@ -34,7 +41,7 @@ function useStorage(type, key, initialValue = '') {
   
 	return [
 		item, 
-		type === TYPES.COOKIE ? (value, options) => {
+		type === ACTIONS.COOKIE ? (value, options) => {
 			setItem(value)
 			storage.setItem(key, value, options)
 		} : value => {
