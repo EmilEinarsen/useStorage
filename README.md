@@ -23,4 +23,4 @@ Also, if the chosen type is cookie, then the returned "set" also takes an option
 Pull requests are welcome. For any considerable changes, please open an issue first to discuss what you would like to change.<br>
 
 ## Licence
-[MIT](https://github.com/EmilEinarsen/bjork_restrain/blob/master/LICENSE)
+[MIT](https://github.com/EmilEinarsen/bjork_useStorage/blob/master/LICENSE)
